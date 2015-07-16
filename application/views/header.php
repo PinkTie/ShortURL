@@ -13,7 +13,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="container">
-                        <?php echo anchor('http://linq.at', 'Linq@', array('class' => 'brand')); ?>
+                        <?php echo anchor('http://linq.at', '<h2>Linq@</h2>', array('class' => 'brand')); ?>
                     </div>
                 </div><!-- /navbar-inner -->
             </div>
