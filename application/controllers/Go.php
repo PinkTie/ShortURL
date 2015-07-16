@@ -1,41 +1,44 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-class Go extends PM_Controller {
-    
-    function __construct() {
-        parent::__construct();
-        $this->load->helper('string');
+class Go extends CI_Controller
+{
+    /**
+     * Method to redirect from an linq to a full URL
+     */
+    public function index()
+    {
+	$this->log_redirect();
+	$linq = $this->uri->segment(1);
+	//$this->db->select('url');
+	$query = $this->db->get_where('linqs', array('linq' => $linq), 1, 0);
+	if ($query->num_rows() > 0)
+	{
+	    foreach ($query->result() as $row)
+	    {
+		$this->load->helper('url');
+		redirect(prep_url($row->url), 'refresh', 301);
+	    }
+	}
+	else
+	{
+	    echo "Sorry, linq '$linq' not found";
+	}
     }
-    
-    public function index() {
-        if (!$this->uri->segment(1)) {
-            echo 'FAILED: ';
-            //redirect (base_url());
-        } else {
-            $surl = $this->uri->segment(1);
-            echo 'SUCCESS: '.$surl;
-            $this->load->model('Pm_urls');
-            $query = $this->Pm_urls->fetch_url($surl);
-            echo 'Query: '.$query;
-            print_r($query);
-            if ($query->num_rows() == 1) {
-                foreach ($query->result() as $row) {
-                    $url = $row->url;
-                }
-                
-                redirect (prep_url($url));
-            } else {
-                $page_data = array(
-                    'success_fail' => null,
-                    'encoded_url' => false
-                );
-                
-                $this->load->view('common/header');
-                $this->load->view('nav/top_nav');
-                $this->load->view('create/create', $page_data);
-                $this->load->view('common/footer');
-            }
-        }
+    /**
+     * Method to log a redirect
+     */
+    function log_redirect()
+    {
+	$data = array(
+	    'pmstamp' => date("Y-m-d H:i:s"),
+	    'ip' => $this->input->ip_address(),
+	    'agent' => $this->input->user_agent(),
+	    'linq' => $this->uri->uri_string()
+	);
+	$this->db->insert('tracking', $data);
     }
 }
-
+/* End of file go.php */
+/* Location: ./application/controllers/Go.php */
