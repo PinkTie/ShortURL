@@ -2,6 +2,11 @@
 --
 -- Table structure for table `links`
 --
+-- id int(11) - primary key
+-- oid int(11) - owner id
+-- url text - original url
+-- surl varchar(6) - shortened url
+-- pmstamp timestamp - record timestamp
 
 DROP TABLE IF EXISTS `links`;
 CREATE TABLE IF NOT EXISTS `links` (

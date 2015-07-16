@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
 // Common form elements
 $lang['common_form_elements_next'] = "Next...";
 $lang['common_form_elements_save'] = "Save...";
@@ -19,3 +21,15 @@ $lang['common_form_elements_no'] = "No";
 $lang['common_form_elements_to'] = "to";
 $lang['common_form_elements_from'] = "from";
 $lang['common_form_elements_history'] = "History";
+
+// General
+$lang['system_system_name'] = "Linq@";
+
+// Encode
+$lang['encode_instruction_1']= "Enter a URL in the text box below and we'll shorten it";
+$lang['encode_encode_now']= "Shorten Now";
+$lang['encode_encode_now_success']= "Your URL was successfully shortened - check it out below";
+$lang['encode_encode_now_error']= "We could not shorten your url, see below for why";
+$lang['encode_type_url_here']= "Write the URL here";
+$lang['create_url_address'] = "Write the URL here";
+$lang['encode_encoded_url']= "Hey look at this, your shortenedurl is:";
