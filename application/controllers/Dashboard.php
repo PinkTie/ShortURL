@@ -15,8 +15,11 @@ class Dashboard extends CI_Controller
     {
         $this->load->library('table');
         $linqs = array();
-        $linqs[] = array('ID', 'Date', 'IP Address', 'Agent', 'Linq');
-        $this->db->select('id, pmstamp, ip, agent, linq');
+        $linqs[] = array('ID', 'Date', 'IP Address', 'Browser', 'OS', 'Mobile', 'Referrer', 'Linq');
+        $this->db->select('id, pmstamp, ip, browser, platform, mobile, ref, linq');
+        $this->db->where('robot', '');
+        $this->db->where('linq !=', 'robots.txt');
+        $this->db->where('linq !=', 'favicon.ico');
         $this->db->limit($limit);
         $this->db->order_by('id', 'desc');
         $query = $this->db->get('tracking');

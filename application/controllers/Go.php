@@ -31,11 +31,18 @@ class Go extends CI_Controller
      */
     function log_redirect()
     {
+                
 	$data = array(
 	    'pmstamp' => date("Y-m-d H:i:s"),
 	    'ip' => $this->input->ip_address(),
 	    'agent' => $this->input->user_agent(),
-	    'linq' => $this->uri->uri_string()
+	    'linq' => $this->uri->uri_string(),
+            'ref' => $this->agent->referrer(),
+            'browser' => $this->agent->browser(),
+            'version' => $this->agent->version(),
+            'mobile' => $this->agent->mobile(),
+            'robot' => $this->agent->robot(),
+            'platform' => $this->agent->platform(),
 	);
 	$this->db->insert('tracking', $data);
     }
