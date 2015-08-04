@@ -5,7 +5,6 @@
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" /></link>
         <script language="javascript" src="assets/scripts/jquery-1.11.3.min.js"></script>
-
     </head>
 
     <body>

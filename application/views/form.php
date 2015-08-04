@@ -14,13 +14,29 @@ $(document).ready(function(){
                     success:
                     function(data){
                         $("#linqOut").removeClass("hidden");
-                        $("#linqOut").html('<strong>Your Linq:</strong> <a href="'+data+'" class="alert-link" target="_blank">'+data+'</a>');
+                        $("#linqOut").html('<strong>Your Linq:</strong> &nbsp;&nbsp; <input class="linqURL" value='+data+'> &nbsp;&nbsp;&nbsp;&nbsp;   <button onclick="copyLinq(); return false;">Copy</button>');
                     }
                 });
             }
             return false;
         });
+    
+    
 });
+
+function copyLinq() {
+    var linqURL = document.querySelector('.linqURL');
+    linqURL.select();
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying was ' + msg);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+    document.getSelection().removeAllRanges();
+};
+
 </script>
 <?php echo form_open('linq', array('name' => 'ajax_form', 'id' => 'ajax_form', 'class'=>'form-inline')); ?>
 
