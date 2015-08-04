@@ -18,7 +18,7 @@ class Go extends CI_Controller
 	    foreach ($query->result() as $row)
 	    {
 		$this->load->helper('url');
-		redirect(prep_url($row->url), 'refresh', 301);
+		redirect(prep_url($row->url), 'location', 301);
 	    }
 	}
 	else
